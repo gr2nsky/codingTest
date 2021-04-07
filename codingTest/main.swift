@@ -1,18 +1,23 @@
 /*
  main.swift-------------------------------------
-  codingTest - https://programmers.co.kr/learn/courses/30/lessons/12933
- 함수 solution은 정수 n을 매개변수로 입력받습니다. n의 각 자릿수를 큰것부터 작은 순으로 정렬한 새로운 정수를 리턴해주세요. 예를들어 n이 118372면 873211을 리턴하면 됩니다.
+  codingTest - https://programmers.co.kr/learn/courses/30/lessons/12934
+ 임의의 양의 정수 n에 대해, n이 어떤 양의 정수 x의 제곱인지 아닌지 판단하려 합니다.
+ n이 양의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고, n이 양의 정수 x의 제곱이 아니라면
+ -1을 리턴하는 함수를 완성하세요.
   [comment]
-Array(String(n).sorted{ $0 > $1 }로 간략화가 가능했었다.
- 이걸 다시 string으로 형변환하고 Int64로 형변환 하면 됬었다.
- char까진 좀 ㅎ
-  Created by 윤재필 on 2021/04/06.----------------
+입력받은 n을 sqrt함수로 제곱근을 구해 int로 형변환시켜
+ 다시 곱해 입력받은 값과 같은지를 비교합니다.
+  Created by 윤재필 on 2021/04/07.----------------
 */
 import Foundation
 
-func solution(_ n:Int64) -> Int {
-    var str: [Character] = Array( String(n) )
-    str.sort(by: >)
+print(solution(121))
+print(solution(3))
+print(solution(43614361))
+
+
+func solution(_ n:Int64) -> Int64 {
+    var sqrtN: Int64 = Int64( sqrt( Double(n) ) )
     
-    return Int( String(str) )!
+    return sqrtN * sqrtN == n ? (sqrtN+1) * (sqrtN+1) : -1
 }
