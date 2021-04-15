@@ -1,31 +1,20 @@
 /* main.swift-------------------------------------
-  codingTest - https://programmers.co.kr/learn/courses/30/lessons/12947
- 양의 정수 x가 하샤드 수이려면 x의 자릿수의 합으로 x가 나누어져야 합니다.
- 예를 들어 18의 자릿수 합은 1+8=9이고, 18은 9로 나누어 떨어지므로 18은 하샤드 수입니다.
- 자연수 x를 입력받아 x가 하샤드 수인지 아닌지 검사하는 함수, solution을 완성해주세요.
+  codingTest - https://programmers.co.kr/learn/courses/30/lessons/12948
+    프로그래머스 모바일은 개인정보 보호를 위해 고지서를 보낼 때 고객들의 전화번호의 일부를 가립니다.
+    전화번호가 문자열 phone_number로 주어졌을 때, 전화번호의 뒷 4자리를 제외한 나머지 숫자를
+    전부 *으로 가린 문자열을 리턴하는 함수, solution을 완성해주세요.
   [comment]
- 배열에서 반복문을 대체할 고차함수가 있다면 사용을 고려해보는 자세가 필요힙니다.
-  Created by 윤재필 on 2021/04/13.---------------- */
+    
+  Created by 윤재필 on 2021/04/15.---------------- */
 
 import Foundation
 
-func solution(_ x:Int) -> Bool {
-    var sum = 0
-    var temp = x
-    while(temp > 0) {
-        sum += temp % 10
-        temp /= 10
-    }
-    return x % sum == 0 ? true : false
-}
+print(solution("01047339270"))
 
-func solution2(_ x: Int) -> Bool {
-    
-    var sum = String(x).map{Int(String($0))!}.reduce(0, +)
-    
-    return x % sum == 0
-}
-
-func slution3(_ x: Int) -> Bool {
-    return x % String(x).reduce(0, {$0 + Int(String($1))!}) == 0
+func solution(_ phone_number:String) -> String {
+    let result: [Character] = Array(repeating: "*", count: phone_number.count - 4)
+    let startIndex = phone_number.index(phone_number.endIndex, offsetBy: -4)
+    let endIndex = phone_number.index(phone_number.endIndex, offsetBy: 0)
+    let subString = phone_number[startIndex...endIndex]
+    return "\(String(result))"+"\(String(subString))"
 }
